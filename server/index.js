@@ -10,7 +10,7 @@ app.use(express.json())
 
 app.use(cors({
     origin: process.env.NODE_ENV === 'production'
-        ? 'https://bca-ly-project-jwt-client.vercel.app'
+        ? 'https://my-portfolio-client-lemon.vercel.app'
         : 'http://localhost:3000',
     credentials: true
 }));
