@@ -8,3 +8,4 @@ export type STATE_INFO_REQUEST = {
     technologies: number,
     happyClients: number,
 }
+
