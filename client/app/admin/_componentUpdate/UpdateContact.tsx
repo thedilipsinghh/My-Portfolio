@@ -39,7 +39,6 @@ const UpdateContact = () => {
             await updateContact({ _id: data.PResult._id, contact: formData }).unwrap()
             refetch()
             toast.success("Contact Updated")
-
         } catch (error) {
             console.log(error)
             toast.error("Unable to update contact")

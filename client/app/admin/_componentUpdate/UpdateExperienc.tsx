@@ -10,7 +10,6 @@ const UpdateExperienc = () => {
     const { data } = useGetExpQuery({})
     const [createExp] = useCreateExpMutation()
     const [deleteExp] = useDeleteExpMutation()
-    console.log(data)
 
     const ExpSchema = z.object({
         _id: z.string().min(1).optional(),
