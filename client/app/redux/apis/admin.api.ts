@@ -5,7 +5,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 export const portfolioApi = createApi({
     reducerPath: "Portfolio",
     baseQuery: fetchBaseQuery({
-        baseUrl: `${APP_URL}/api/admin`,
+        baseUrl: `/api/admin`,
         credentials: "include"
     }),
     tagTypes: ["tagName"],
