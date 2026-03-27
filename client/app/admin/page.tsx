@@ -19,6 +19,7 @@ const admin = () => {
             await signout(null).unwrap()
             router.refresh()
             toast.success("logout success")
+            router.push("/")
         } catch (error) {
             console.log(error)
             toast.error("logout fail")
