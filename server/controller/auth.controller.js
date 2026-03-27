@@ -26,7 +26,6 @@ exports.loginAdmin = async (req, res) => {
             maxAge: 1000 * 60 * 60 * 24,
             secure: process.env.NODE_ENV === "production"
         })
-        res.status(200).json({ name: User.name, email: User.email, mobilr: User.mobile, })
         res.status(200).json({ message: "Admin login Success" })
     } catch (error) {
         console.log(error)

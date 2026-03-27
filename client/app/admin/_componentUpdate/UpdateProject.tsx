@@ -19,7 +19,7 @@ const UpdateProject = () => {
         title: z.string().min(2),
         description: z.string().min(2),
         note: z.string().min(2),
-        image: z.string().min(2),
+        image: z.any(),
         tags: z.string().min(2),
         liveLink: z.string().min(2),
         githubLink: z.string().min(2),
@@ -35,9 +35,24 @@ const UpdateProject = () => {
 
     const handleProjectCreate = async (data: projectUpdate) => {
         try {
-            await createProject(data).unwrap()
+            const formData = new FormData()
+            console.log("SUBMIT TRIGGERED", data)
+
+            formData.append("title", data.title)
+            formData.append("description", data.description)
+            formData.append("note", data.note)
+            formData.append("tags", data.tags)
+            formData.append("liveLink", data.liveLink)
+            formData.append("githubLink", data.githubLink)
+
+
+            formData.append("image", data.image[0])
+
+            await createProject(formData).unwrap()
+
             toast.success("Project Create Success")
             reset()
+
         } catch (error) {
             console.log(error)
             toast.error("Unable to Create Project")
@@ -103,6 +118,7 @@ const UpdateProject = () => {
                         <div>
                             <label className="text-sm text-black">Image URL</label>
                             <input
+                                type="file"
                                 {...register("image")}
                                 placeholder="https://example.com/project-image.png"
                                 className="w-full mt-1 border rounded-lg px-3 py-2 text-black placeholder-gray-400 focus:ring-2 focus:ring-blue-500 outline-none"

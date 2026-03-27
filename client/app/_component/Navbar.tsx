@@ -58,7 +58,7 @@ export default function Navbar() {
                 </nav>
 
                 {/* Theme Button */}
-                <button className="p-2 rounded-full text-gray-700 hover:bg-gray-200 transition">
+                <button  className="p-2 rounded-full text-gray-700 hover:bg-gray-200 transition">
                     <Sun size={20} />
                 </button>
 

@@ -35,7 +35,7 @@ const AdminLogin = () => {
         try {
             await login(data).unwrap()
             toast.success("Login success")
-            router.push("/admin/dashboard")
+            router.push("/admin")
             router.refresh()
             reset()
         } catch {

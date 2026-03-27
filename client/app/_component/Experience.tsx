@@ -7,7 +7,6 @@ import { EXP_REQUEST, EXP_RESPONSE } from "../type/Exp";
 
 export default function Timeline() {
     const { data } = useGetExpQuery("")
-    // console.log("exp", data)
     return (
         <section id="experience" className=" #f7f7f7 py-20 px-6 scroll-mt-20">
             <div className="max-w-4xl mx-auto">

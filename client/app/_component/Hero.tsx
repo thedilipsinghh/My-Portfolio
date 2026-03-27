@@ -1,11 +1,36 @@
 "use client"; // Required for animations in Next.js App Router
 import Image from "next/image";
-import { Github, Linkedin, Download, ArrowRight, Link } from "lucide-react";
+import { Github, Linkedin, Download, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { useGetPortfolioQuery } from "../redux/apis/admin.api";
 
 export default function Hero() {
     const router = useRouter()
+    const { data } = useGetPortfolioQuery({})
+    const hero = data?.PResult?.hero
+
+    const handleDownload = () => {
+        if (!hero?.resume) return;
+
+        let downloadUrl = hero.resume;
+
+        if (downloadUrl.includes("/image/upload/")) {
+            downloadUrl = downloadUrl.replace(
+                "/image/upload/",
+                "/raw/upload/fl_attachment/"
+            );
+        }
+
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.setAttribute("download", "Resume.pdf");
+
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
     return (
         <section className="min-h-[85vh] bg-[#f7f7f7] flex items-center overflow-hidden">
             <div className="max-w-7xl mx-auto px-8 grid md:grid-cols-2 items-center gap-12 w-full">
@@ -20,7 +45,7 @@ export default function Hero() {
                         <span className="text-black">Hi, I'm</span>
                         <br />
                         <span className="bg-gradient-to-r from-slate-800 to-blue-600 bg-clip-text text-transparent">
-                            Dilip Singh
+                            {hero?.name || "Dilip Singh"}
                         </span>
                     </h1>
 
@@ -30,7 +55,7 @@ export default function Hero() {
                         transition={{ delay: 0.4, duration: 0.8 }}
                         className="mt-6 text-gray-600 text-lg"
                     >
-                        MERN Stack Developer crafting beautiful web experiences
+                        {hero?.title || "MERN Stack Developer crafting beautiful web experiences"}
                     </motion.p>
 
                     {/* Buttons */}
@@ -41,12 +66,14 @@ export default function Hero() {
                         className="flex gap-4 mt-8"
                     >
                         <button onClick={() => router.push("/#contact")} className="flex items-center gap-2 bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-all active:scale-95">
-                            {/* <Link href="/contact"></Link> */}
                             Get in Touch
                             <ArrowRight size={18} />
                         </button>
 
-                        <button className="flex items-center gap-2 border border-gray-500 text-gray-900 px-6 py-3 rounded-lg hover:bg-gray-200 transition-all active:scale-95">
+                        <button
+                            onClick={handleDownload}
+                            className="flex items-center gap-2 border border-gray-500 text-gray-900 px-6 py-3 rounded-lg hover:bg-gray-200 transition-all active:scale-95"
+                        >
                             <Download size={18} />
                             Download CV
                         </button>
@@ -83,7 +110,7 @@ export default function Hero() {
 
                         <div className="relative w-[320px] h-[320px] lg:w-[420px] lg:h-[420px] rounded-full border-[10px] border-white shadow-xl overflow-hidden">
                             <Image
-                                src="/profile2.png"
+                                src={hero?.profileImage || "/profile2.png"}
                                 alt="profile"
                                 width={420}
                                 height={420}

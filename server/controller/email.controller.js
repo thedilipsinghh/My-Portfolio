@@ -1,4 +1,6 @@
 const nodemailer = require("nodemailer")
+const contactEmailTemplate = require("../template/contactEmailTemplate")
+const clientReplyTemplate = require("../template/clientReplyTemplate")
 
 exports.sendContactMessage = async (req, res) => {
     try {
@@ -18,14 +20,12 @@ exports.sendContactMessage = async (req, res) => {
             from: email,
             to: process.env.EMAIL,
             subject: `Portfolio Contact: ${subject}`,
-            html: `
-        <h2>New Portfolio Message</h2>
-        <p><b>Name:</b> ${name}</p>
-        <p><b>Email:</b> ${email}</p>
-        <p><b>Subject:</b> ${subject}</p>
-        <p><b>Message:</b></p>
-        <p>${message}</p>
-      `
+            html: contactEmailTemplate({
+                name,
+                email,
+                subject,
+                message
+            })
         }
 
         // 📩 Auto reply to client
@@ -33,23 +33,10 @@ exports.sendContactMessage = async (req, res) => {
             from: process.env.EMAIL,
             to: email,
             subject: "Thanks for contacting me",
-            html: `
-        <h2>Hi ${name},</h2>
-        <p>Thank you for contacting me through my portfolio.</p>
-
-        <p>I have received your message and will get back to you as soon as possible.</p>
-
-        <br/>
-
-        <p><b>Your message:</b></p>
-        <p>${message}</p>
-
-        <br/>
-
-        <p>Best Regards</p>
-        <p><b>Dilip Singh</b></p>
-        <p>MERN Stack Developer</p>
-      `
+            html: clientReplyTemplate({
+                name,
+                message
+            })
         }
 
         await transporter.sendMail(adminMail)

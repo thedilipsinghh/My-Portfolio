@@ -13,11 +13,11 @@ export default function ConnetAndLead() {
                     Let's discuss your project and see how I can help bring your ideas to life.
                 </p>
 
-                <Link href="/contact">
+                <a href="mailto:ds4718421@gmail.com">
                     <button className="bg-white text-black px-6 py-3 rounded-lg font-medium hover:bg-gray-200 transition">
                         Get in Touch
                     </button>
-                </Link>
+                </a>
 
             </div>
         </section>

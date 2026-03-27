@@ -5,11 +5,11 @@ export const proxy = (req: NextRequest) => {
     const token = req.cookies.get("PortfolioAdmin")?.value
     const all = req.cookies.getAll()
     if (!token) {
-        return NextResponse.redirect(new URL("/", req.url)) //
+        return NextResponse.redirect(new URL("/login", req.url)) //
     }
     return NextResponse.next()
 }
 
 export const config = {
-    matcher: ["/admin/dashboard/:path*"] // any route matches /admin/anything
+    matcher: ["/admin/:path*"] // any route matches /admin/anything
 }

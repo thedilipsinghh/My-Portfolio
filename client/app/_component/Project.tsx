@@ -12,7 +12,7 @@ export default function Projects() {
     const [showAll, setShowAll] = useState(false);
 
     // Logic to decide which projects to render
-    const displayedProjects = showAll ? data : data?.PResult.slice(0, 2);
+    const displayedProjects = showAll ? data?.PResult : data?.PResult?.slice(0, 2);
 
     return (
         <section id="projects" className=" #f7f7f7 py-20 px-6 scroll-mt-20">

@@ -115,8 +115,9 @@ export const portfolioApi = createApi({
             // Portfolio Update mutation
             updatePortfolio: builder.mutation({
                 query: userData => {
+                    const id = userData instanceof FormData ? userData.get("_id") : userData._id
                     return {
-                        url: "/info-modify/" + userData._id,
+                        url: "/info-modify/" + id,
                         method: "PUT",
                         body: userData
                     }
@@ -158,8 +159,9 @@ export const portfolioApi = createApi({
             //  Project  Update mutation
             updateProject: builder.mutation({
                 query: userData => {
+                    const id = userData instanceof FormData ? userData.get("_id") : userData._id
                     return {
-                        url: "/info-up-project/" + userData._id,
+                        url: "/info-up-project/" + id,
                         method: "PUT",
                         body: userData
                     }

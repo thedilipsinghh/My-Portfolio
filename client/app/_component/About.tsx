@@ -1,17 +1,15 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import { useGetPortfolioQuery } from '../redux/apis/admin.api';
+import { useRouter } from 'next/navigation';
+import Navbar from './Navbar';
 
-// const stats = [
-//     { label: 'Years Experience', value: '1' },
-//     { label: 'Projects Completed', value: '7+' },
-//     { label: 'Technologies', value: '15+' },
-//     { label: 'Happy Clients', value: '2+' },
-// ];
+
 
 export default function AboutMe() {
     const { data } = useGetPortfolioQuery({})
     const [allStats, setAllStats] = useState<any[]>([])
+    const {push} = useRouter()
 
     useEffect(() => {
         if (data) {
@@ -44,10 +42,10 @@ export default function AboutMe() {
                             I'm a <span className="font-bold text-black">MERN Stack Developer</span> with a passion for building modern, responsive web applications. With expertise in JavaScript, React, Node.js, and related technologies, I create intuitive and visually appealing user interfaces.
                         </p>
                         <p className="text-gray-800 text-lg leading-relaxed mb-10">
-                            Currently working at <span className="font-bold text-black">Matic UI</span>, I've contributed to various projects including a Medical Diagnostic App and a SaaS Property Management Platform.
+                            Currently working as <span className="font-bold text-black">Backend Intern</span>, I've contributed to various projects including a Medical Diagnostic App and a SaaS Property Management Platform.
                         </p>
 
-                        <button className="group flex items-center gap-2 border border-gray-300 px-5 py-2.5 rounded-lg text-[15px] font-medium text-gray-800 shadow-sm bg-white transition-all duration-300 hover:border-gray-900 hover:shadow-md hover:-translate-y-1 active:scale-95">
+                        <button onClick={() => push("/aboutme")} className="group flex items-center gap-2 border border-gray-300 px-5 py-2.5 rounded-lg text-[15px] font-medium text-gray-800 shadow-sm bg-white transition-all duration-300 hover:border-gray-900 hover:shadow-md hover:-translate-y-1 active:scale-95">
                             More About Me
                             <span className="text-lg transition-transform duration-300 group-hover:translate-x-1">
                                 →

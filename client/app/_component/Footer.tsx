@@ -3,7 +3,6 @@ import { Github, Linkedin, Mail, Phone, MapPin } from "lucide-react"
 import { useGetPortfolioQuery } from "../redux/apis/admin.api"
 const Footer = () => {
     const { data } = useGetPortfolioQuery({})
-    // console.table(data)
     return (
         <footer className="bg-gray-100 border-t mt-20">
             <div className="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-10">
