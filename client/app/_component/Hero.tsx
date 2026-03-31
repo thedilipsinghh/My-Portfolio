@@ -4,6 +4,7 @@ import { Github, Linkedin, Download, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useGetPortfolioQuery } from "../redux/apis/admin.api";
+import { link } from "fs";
 
 export default function Hero() {
     const router = useRouter()
@@ -87,12 +88,18 @@ export default function Hero() {
                         className="flex gap-4 mt-8"
                     >
                         {[
-                            { icon: <Github size={18} />, link: "#" },
-                            { icon: <Linkedin size={18} />, link: "#" },
+                            { icon: <Github size={18} />, link: "https://github.com/thedilipsinghh" },
+                            { icon: <Linkedin size={18} />, link: "https://www.linkedin.com/in/thedilipsinghh" },
                         ].map((social, i) => (
-                            <div key={i} className="w-10 h-10 border rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-colors cursor-pointer">
+                            <a
+                                key={i}
+                                href={social.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-10 h-10 border rounded-full flex items-center justify-center text-black hover:bg-black hover:text-white transition-colors cursor-pointer"
+                            >
                                 {social.icon}
-                            </div>
+                            </a>
                         ))}
                     </motion.div>
                 </motion.div>

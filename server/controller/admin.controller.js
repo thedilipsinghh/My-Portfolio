@@ -10,7 +10,6 @@ const { cloudinary } = require("../utils/uploader.js")
 exports.getPortfolio = async (req, res) => {
     try {
         const PResult = await Portfolio.findOne()
-
         res.status(200).json({ message: "Portfolio Data fetch Success", PResult })
     } catch (error) {
         res.status(500).json({ message: error.message })
@@ -21,7 +20,6 @@ exports.getPortfolio = async (req, res) => {
 //  skill section get controller 
 exports.getSkill = async (req, res) => {
     try {
-        console.log("aaaa")
         const SResult = await Skills.find()
         res.status(200).json({ message: "Skill Data fetch Success", SResult })
     } catch (error) {
@@ -146,14 +144,11 @@ exports.updatePortfolio = async (req, res) => {
                 const result = await cloudinary.uploader.upload(req.files.resume[0].path, {
                     folder: "portfolio/resumes",
                     resource_type: "raw",
-                    public_id: `Dilip_Resume.pdf`, // Force PDF extension for raw storage
+                    public_id: `Dilip_Resume.pdf`,
                     use_filename: false,
                     unique_filename: false,
                     overwrite: true
                 })
-                // Since this is a raw resource, it doesn't support fl_attachment transformation.
-                // Cloudinary will serve it with Content-Type: application/octet-stream or application/pdf
-                // and the filename will be Dilip_Resume.pdf because of the public_id.
                 updateData.resume = result.secure_url
             }
         }

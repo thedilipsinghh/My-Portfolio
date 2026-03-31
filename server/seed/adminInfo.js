@@ -13,10 +13,10 @@ const adminSeed = async () => {
             console.log("admin data Already Exist")
             process.exit()
         }
-        const hash = await bcrypt.hash("123", 10)
+        const hash = await bcrypt.hash(process.env.seedPassword, 10)
         await Admin.create({
             name: "Dilip Singh",
-            email: "ds4718421@gmail.com",
+            email: process.env.seedEmail,
             password: hash,
             mobile: 997513449,
             role: "admin"
