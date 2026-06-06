@@ -46,7 +46,7 @@ const UpdateContact = () => {
     }
 
     return (
-        <section className="p-6 bg-gray-100 min-h-screen">
+        <section id="updatecontact" className="p-6 bg-gray-100 min-h-screen">
 
             <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
 
